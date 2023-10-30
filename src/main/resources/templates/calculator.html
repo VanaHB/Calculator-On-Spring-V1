@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator On Spring</title>
+</head>
+<body>
+    <form action="calculator" method="post">
+        <input type="text" id="display" name="display" th:field="${calculatorDTO.display}" />
+        <input type="submit" value="Calculate" />
+    </form>
+</body>
+</html>
