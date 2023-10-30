@@ -12,26 +12,29 @@ public class CalculatorService {
         resultToDisplay(calculatorDTO);
     }
     public void calculate(CalculatorDTO calculatorDTO) {
-        String display = calculatorDTO.getDisplay();
+        String display = comaToDot(calculatorDTO.getDisplay());
         ArrayList<Float> numbers = new ArrayList<>();
-        if (display.contains("+")) {
-            getNumbers(display,"+", numbers);
-            calculatorDTO.setResult(numbers.get(0) + numbers.get(1));
-            resultToDisplay(calculatorDTO);
-        } else if (display.contains("-")) {
-            getNumbers(display,"-", numbers);
-            calculatorDTO.setResult(numbers.get(0) - numbers.get(1));
-            resultToDisplay(calculatorDTO);
-        } else if (display.contains("*")) {
-            getNumbers(display,"*", numbers);
-            calculatorDTO.setResult(numbers.get(0) * numbers.get(1));
-            resultToDisplay(calculatorDTO);
-        } else if (display.contains("/")) {
-            getNumbers(display,"/", numbers);
-            calculatorDTO.setResult(numbers.get(0) / numbers.get(1));
-            resultToDisplay(calculatorDTO);
+        if (checkString(display)) {
+            if (display.contains("+")) {
+                getNumbers(display, "+", numbers);
+                calculatorDTO.setResult(numbers.get(0) + numbers.get(1));
+                resultToDisplay(calculatorDTO);
+            } else if (display.contains("-")) {
+                getNumbers(display, "-", numbers);
+                calculatorDTO.setResult(numbers.get(0) - numbers.get(1));
+                resultToDisplay(calculatorDTO);
+            } else if (display.contains("*")) {
+                getNumbers(display, "*", numbers);
+                calculatorDTO.setResult(numbers.get(0) * numbers.get(1));
+                resultToDisplay(calculatorDTO);
+            } else if (display.contains("/")) {
+                getNumbers(display, "/", numbers);
+                calculatorDTO.setResult(numbers.get(0) / numbers.get(1));
+                resultToDisplay(calculatorDTO);
+            }
+        } else {
+            errorToDisplay(calculatorDTO);
         }
-
     }
 
     private void getNumbers(String display, String sign, ArrayList<Float> numbers) {
@@ -40,11 +43,28 @@ public class CalculatorService {
         numbers.add(Float.parseFloat(display.substring(display.indexOf(sign)+1, display.length())));
         System.out.printf("");
     }
-    private void checkString() {
 
+    private String dotToComa(String display) {
+        return display.replace(".",",");
+    }
+
+    private String comaToDot(String display) {
+        return display.replace(",",".");
+    }
+
+    private boolean checkString(String string) {
+        String myRegex = "[+-]?([0-9]*[.])?[0-9]+\\+[+-]?([0-9]*[.])?[0-9]+";
+        //boolean match = string.matches(myRegex);
+        //System.out.printf("");
+        return string.matches(myRegex);
     }
 
     public void resultToDisplay(CalculatorDTO calculator) {
-        calculator.setDisplay(Float.toString(calculator.getResult()));
+        calculator.setDisplay(dotToComa(Float.toString(calculator.getResult())));
+    }
+
+    public void errorToDisplay(CalculatorDTO calculatorDTO) {
+        calculatorDTO.setResult(0);
+        calculatorDTO.setDisplay("NaN");
     }
 }
