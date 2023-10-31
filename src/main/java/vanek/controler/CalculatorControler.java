@@ -1,4 +1,4 @@
-package vanek.controlers;
+package vanek.controler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vanek.models.CalculatorDTO;
-import vanek.models.CalculatorService;
+import vanek.model.CalculatorDTO;
+import vanek.sevice.CalculatorService;
 
 @Controller
 @RequestMapping("calculator")

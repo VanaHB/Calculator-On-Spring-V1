@@ -1,15 +1,15 @@
-package vanek.controlers;
+package vanek.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class Advice {
+public class ErrorControlerAdvice {
 
     //this reacts to all controllers errors
     @ExceptionHandler(value = Exception.class)
     public String redirectToErrorPage(){
-        return "error2";
+        return "errorInController";
     }
 
 }

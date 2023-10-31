@@ -1,4 +1,4 @@
-package vanek.models;
+package vanek.model;
 
 public class CalculatorDTO {
 

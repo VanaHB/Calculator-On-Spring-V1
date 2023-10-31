@@ -1,6 +1,8 @@
-package vanek.models;
+package vanek.sevice;
 
 import org.springframework.stereotype.Service;
+import vanek.model.CalculatorDTO;
+
 import java.util.ArrayList;
 
 @Service
@@ -25,12 +27,16 @@ public class CalculatorService {
                 resultToDisplay((numbers.get(0) * numbers.get(1)), calculatorDTO);
             } else if (display.contains("/")) {
                 getNumbers(display, "/", numbers);
-                resultToDisplay((numbers.get(0) / numbers.get(1)), calculatorDTO);
+                if (numbers.get(1) != 0) {
+                    resultToDisplay((numbers.get(0) / numbers.get(1)), calculatorDTO);
+                } else {
+                    errorToDisplay("dividing by 0", calculatorDTO);
+                }
             }
         } else if (checkString(display) == 1) {
             resultToDisplay(Float.parseFloat(comaToDot(calculatorDTO.getDisplay())), calculatorDTO);
         } else {
-            errorToDisplay(calculatorDTO);
+            errorToDisplay("input is not a number",calculatorDTO);
         }
     }
 
@@ -66,9 +72,9 @@ public class CalculatorService {
         calculatorDTO.setDisplay(dotToComa(Float.toString(calculatorDTO.getResult())));
     }
 
-    public void errorToDisplay(CalculatorDTO calculatorDTO) {
+    public void errorToDisplay(String errorMessage, CalculatorDTO calculatorDTO) {
         calculatorDTO.setResult(0);
-        calculatorDTO.setDisplay("NaN");
+        calculatorDTO.setDisplay(String.format("Error: %s",errorMessage));
     }
 
 }
