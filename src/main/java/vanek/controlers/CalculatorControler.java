@@ -27,4 +27,5 @@ public class CalculatorControler {
         calculatorService.calculate(calculatorDTO);
         return "calculator";
     }
+
 }

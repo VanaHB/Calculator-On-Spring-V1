@@ -1,6 +1,7 @@
 package vanek.models;
 
 public class CalculatorDTO {
+
     private String display;
     private float memory;
     private float result;
@@ -28,4 +29,5 @@ public class CalculatorDTO {
     public void setResult(float result) {
         this.result = result;
     }
+
 }
