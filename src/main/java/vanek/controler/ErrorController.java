@@ -1,4 +1,4 @@
-package vanek.exception;
+package vanek.controler;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
