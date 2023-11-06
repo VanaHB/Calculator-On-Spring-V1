@@ -5,11 +5,17 @@
     <title>Calculator On Spring</title>
 </head>
 <body>
+<script>
+    function clearText()
+        {
+        document.getElementById('display').value = "";
+        }
+</script>
     <p>
-        Input two numbers divided by match function (+ - * /).
+        Input two numbers divided by math function (+ - * /).
     </p>
     <form action="calculator" method="post">
-        <input type="text" id="display" name="display" th:field="${calculatorDTO.display}" />
+        <input type="text" id="display" name="display" th:field="${calculatorDTO.display}" onclick="clearText();"/>
         <input type="submit" value="Calculate" />
     </form>
 </body>

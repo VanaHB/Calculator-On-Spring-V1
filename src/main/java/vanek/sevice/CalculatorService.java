@@ -36,7 +36,7 @@ public class CalculatorService {
         } else if (checkString(display) == 1) {
             resultToDisplay(Float.parseFloat(comaToDot(calculatorDTO.getDisplay())), calculatorDTO);
         } else {
-            errorToDisplay("input is not a number",calculatorDTO);
+            errorToDisplay("wrong input format",calculatorDTO);
         }
     }
 
@@ -55,7 +55,7 @@ public class CalculatorService {
 
     private int checkString(String string) {
         String myRegexOne = "[+-]?([0-9]*[.])?[0-9]+";
-        String myRegexTwo = "[+-]?([0-9]*[.])?[0-9]+[-+*/][+-]?([0-9]*[.])?[0-9]+";
+        String myRegexTwo = "[+-]?([0-9]*[.])?[0-9]+[-+*/]?([0-9]*[.])?[0-9]+";
         //boolean match = string.matches(myRegexTwo);
         //System.out.printf("this is used as a break point when debugging regex (observing match variable");
         if (string.matches(myRegexTwo)) {
